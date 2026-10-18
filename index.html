@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顽童</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  min-height:100vh;
+  font-family: "Times New Roman", serif;
+  color:#f0f0f0;
+  background:#080808;
+  overflow:hidden;
+}
+.wrap{
+  position:relative;
+  width:100%;
+  height:100vh;
+}
+.bg-img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:url("./img/bg.jpg") center/cover no-repeat;
+}
+.mask{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.72);
+}
+.page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:4rem;
+  text-align:center;
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+.page.active{
+  display:flex;
+  opacity:1;
+}
+.title{
+  font-size:2.4rem;
+  margin-bottom:1rem;
+  text-shadow:0 0 8px rgba(255,255,255,0.25);
+}
+.subtext{
+  font-size:1.1rem;
+  color:#d1d1d1;
+  margin-bottom:2.5rem;
+  line-height:1.7;
+}
+.info-card{
+  border:1px solid rgba(255,255,255,0.18);
+  padding:2rem 2.4rem;
+  border-radius:6px;
+  background:rgba(255,255,255,0.04);
+  margin-bottom:2rem;
+}
+.info-item{
+  margin:0.6rem 0;
+  font-size:1.05rem;
+  color:#e2e2e2;
+}
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.8rem;
+  justify-content:center;
+  margin-bottom:2rem;
+}
+.tag{
+  border:1px solid rgba(255,255,255,0.22);
+  padding:0.4rem 0.9rem;
+  border-radius:99px;
+  font-size:0.9rem;
+  color:#dcdcdc;
+}
+.desc-text{
+  max-width:520px;
+  line-height:1.8;
+  font-size:1.1rem;
+  color:#d8d8d8;
+  margin-bottom:2.5rem;
+}
+.btn{
+  background:transparent;
+  border:1px solid #bbbbbb;
+  color:#f2f2f2;
+  padding:12px 28px;
+  font-size:1rem;
+  font-family:inherit;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+.btn:hover{
+  background:rgba(255,255,255,0.08);
+  border-color:#fff;
+}
+.step-tip{
+  position:absolute;
+  bottom:32px;
+  font-size:0.85rem;
+  color:#999;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bg-img"></div>
+  <div class="mask"></div>
+
+  <!-- 第1页 欢迎页 -->
+  <div class="page active" id="p1">
+    <h2 class="title">顽童</h2>
+    <p class="subtext">欢迎来的我的私人空间</p>
+    <button class="btn" onclick="nextPage()">START / 开始了解</button>
+    <div class="step-tip">STEP 01 OF 04</div>
+  </div>
+
+  <!-- 第2页 人设档案 -->
+  <div class="page" id="p2">
+    <div class="info-card">
+      <div class="info-item">名字：顽童</div>
+      <div class="info-item">年龄：21</div>
+      <div class="info-item">星座：射手</div>
+      <div class="info-item">MBTI：INTP</div>
+      <div class="info-item">IP属地：未知</div>
+    </div>
+    <button class="btn" onclick="nextPage()">下一步</button>
+    <div class="step-tip">STEP 02 OF 04</div>
+  </div>
+
+  <!-- 第3页 标签&文案 -->
+  <div class="page" id="p3">
+    <div class="tags">
+      <span class="tag">文艺</span>
+      <span class="tag">钓系</span>
+      <span class="tag">上位犬系</span>
+      <span class="tag">引导</span>
+    </div>
+    <p class="desc-text">你随时可以退出，但留下来的孩子会得到糖果</p>
+    <button class="btn" onclick="nextPage()">下一步</button>
+    <div class="step-tip">STEP 03 OF 04</div>
+  </div>
+
+  <!-- 第4页 收尾页 -->
+  <div class="page" id="p4">
+    <h2 class="title">END</h2>
+    <p class="subtext">感谢驻足，到此便是全部</p>
+    <button class="btn" onclick="nextPage()">回到首页</button>
+    <div class="step-tip">STEP 04 OF 04</div>
+  </div>
+
+</div>
+
+<script>
+let currentPage = 1;
+const total = 4;
+function nextPage(){
+  document.getElementById('p'+currentPage).classList.remove('active');
+  currentPage++;
+  if(currentPage > total){
+    currentPage = 1;
+  }
+  document.getElementById('p'+currentPage).classList.add('active');
+}
+</script>
+</body>
+</html>
